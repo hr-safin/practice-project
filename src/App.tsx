@@ -1,4 +1,5 @@
 import AddToDo from "./Components/AddToDo"
+import Todos from "./Components/Todos"
 
 const App = () => {
   return (
