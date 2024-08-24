@@ -1,10 +1,57 @@
-import { createContext } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 
-export const todoContext = createContext(null)
+export type TodoProviderProps = {
+    children : ReactNode
+}
 
-export const TodosProvider = ({children}) => {
-  return <todoContext.Provider>
+export type Todo = {
+  id : string;
+  task : string;
+  completed : boolean;
+  createdAt : Date
+}
+
+export type TodoContext = {
+  todos : Todo[];
+  handleTodo : (task : string) => void
+}
+
+
+
+export const todoContext = createContext<TodoContext | null>(null)
+
+export const TodosProvider = ({children} : TodoProviderProps) => {
+  
+  const [todos, setTodos] = useState<Todo[]>([])
+  const handleTodo = (task : string) => {
+    setTodos((prev) => {
+      const newTodos : Todo[] = [
+        {
+          id : Math.random().toString(),
+          task : task,
+          completed : false,
+          createdAt : new Date()
+        },
+        ...prev
+      ]
+      return newTodos
+    })
+  }
+  return <todoContext.Provider value={{todos, handleTodo}}>
     {children}
   </todoContext.Provider>
+}
+
+
+//Consumer
+
+export const useTodos = () => {
+  const todosConsumer = useContext(todoContext)
+
+  if(!todosConsumer){
+    throw new Error("use todos used outside of provider")
+  }
+
+  return todosConsumer
 }
