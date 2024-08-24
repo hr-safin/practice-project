@@ -1,7 +1,7 @@
 import { useTodos } from "../store/Todo";
 
 const Todos = () => {
-  const { todos } = useTodos();
+  const { todos, toggleTodoAsCompleted } = useTodos();
   const filterData = todos;
   return (
     <ul>
