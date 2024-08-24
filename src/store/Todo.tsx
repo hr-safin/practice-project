@@ -35,6 +35,8 @@ export const TodosProvider = ({children} : TodoProviderProps) => {
         },
         ...prev
       ]
+      console.log("my previous " + prev)
+      console.log(newTodos)
       return newTodos
     })
   }

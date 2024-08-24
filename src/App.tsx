@@ -5,6 +5,7 @@ const App = () => {
     <main>
       <h2>Todo React + Typescript</h2>
       <AddToDo />
+      <Todos />
     </main>
   )
 }
