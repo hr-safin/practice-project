@@ -52,7 +52,8 @@ export const TodosProvider = ({ children }: TodoProviderProps) => {
       return newTodos;
     });
   };
-
+  
+  // Delete Implementation
   const handleDeleteTodo = (id: string) => {
     setTodos((prev) => {
       return prev.filter(filterTodo => filterTodo.id !== id)
