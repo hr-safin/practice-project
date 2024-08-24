@@ -1,7 +1,7 @@
 import { useTodos } from "../store/Todo";
 
 const Todos = () => {
-  const { todos, toggleTodoAsCompleted } = useTodos();
+  const { todos, toggleTodoAsCompleted, handleDeleteTodo } = useTodos();
   const filterData = todos;
   return (
     <ul>
@@ -18,7 +18,7 @@ const Todos = () => {
             <label htmlFor={`todo-${todo.id}`}>{todo.task}</label>
             {
                 todo.completed && (
-                    <button onClick={() => handleDeletTodo(todo.id)} type="button">Delete</button>
+                    <button onClick={() => handleDeleteTodo(todo.id)} type="button">Delete</button>
                 )
             }
           </li>
