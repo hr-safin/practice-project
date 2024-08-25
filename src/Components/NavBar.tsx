@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+import {  NavLink } from "react-router-dom"
 
 const NavBar = () => {
   return (
-    <nav>
-      <Link to="/" className="">All</Link>
-      <Link to="/?todos=active" className="">Active</Link>
-      <Link to="/?todos=completed" className="">Completed</Link>
+    <nav className=" flex justify-between items-center">
+      <NavLink to="/" className="">All</NavLink>
+      <NavLink to="/?todos=active" className="">Active</NavLink>
+      <NavLink to="/?todos=completed" className="">Completed</NavLink>
     </nav>
   )
 }
