@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
+
 export type TodoProviderProps = {
   children: ReactNode;
 };
@@ -21,8 +22,19 @@ export type TodoContext = {
 export const todoContext = createContext<TodoContext | null>(null);
 
 export const TodosProvider = ({ children }: TodoProviderProps) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    try {
+      const newTodos = localStorage.getItem("todos") || "[]"
+      return JSON.parse(newTodos) as Todo[]
+    } catch (error) {
+      console.log(error)
+      return []
+    }
+  });
+
   const handleTodo = (task: string) => {
+
     setTodos((prev) => {
       const newTodos: Todo[] = [
         {
@@ -35,6 +47,8 @@ export const TodosProvider = ({ children }: TodoProviderProps) => {
       ];
       console.log("my previous " + prev);
       console.log(newTodos);
+
+      localStorage.setItem("todos", JSON.stringify(newTodos))
       return newTodos;
     });
   };
@@ -49,6 +63,7 @@ export const TodosProvider = ({ children }: TodoProviderProps) => {
 
         return todo;
       });
+      localStorage.setItem("todos", JSON.stringify(newTodos))
       return newTodos;
     });
   };
@@ -56,7 +71,10 @@ export const TodosProvider = ({ children }: TodoProviderProps) => {
   // Delete Implementation
   const handleDeleteTodo = (id: string) => {
     setTodos((prev) => {
-      return prev.filter(filterTodo => filterTodo.id !== id)
+      
+      const  newTodos = prev.filter(filterTodo => filterTodo.id !== id)
+      localStorage.setItem("todos", JSON.stringify(newTodos))
+      return newTodos
       
     })
   };
