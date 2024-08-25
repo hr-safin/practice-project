@@ -22,20 +22,21 @@ const Todos = () => {
 
 
   return (
-    <ul>
+    <ul className=" pt-8 flex items-center flex-col justify-around max-w-3xl">
       {filterData.map((todo) => {
         return (
           <li key={todo.id}>
             <input
+              className="mr-1 text-lg"
               type="checkbox"
               checked={todo.completed}
               name=""
               onChange={() => toggleTodoAsCompleted(todo.id)}
               id={`todo-${todo.id}`}
             />
-            <label htmlFor={`todo-${todo.id}`}>{todo.task}</label>
+            <label className="text-lg" htmlFor={`todo-${todo.id}`}>{todo.task}</label>
             {todo.completed && (
-              <button onClick={() => handleDeleteTodo(todo.id)} type="button">
+              <button className=" px-4 py-2 rounded-md ml-10 text-white bg-red-500" onClick={() => handleDeleteTodo(todo.id)} type="button">
                 Delete
               </button>
             )}
