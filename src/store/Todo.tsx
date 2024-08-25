@@ -24,18 +24,24 @@ export const todoContext = createContext<TodoContext | null>(null);
 export const TodosProvider = ({ children }: TodoProviderProps) => {
 
   const [todos, setTodos] = useState<Todo[]>(() => {
+
     try {
+
       const newTodos = localStorage.getItem("todos") || "[]"
       return JSON.parse(newTodos) as Todo[]
+
     } catch (error) {
+
       console.log(error)
       return []
+
     }
   });
 
   const handleTodo = (task: string) => {
 
     setTodos((prev) => {
+
       const newTodos: Todo[] = [
         {
           id: Math.random().toString(),
@@ -45,11 +51,13 @@ export const TodosProvider = ({ children }: TodoProviderProps) => {
         },
         ...prev,
       ];
+
       console.log("my previous " + prev);
       console.log(newTodos);
 
       localStorage.setItem("todos", JSON.stringify(newTodos))
       return newTodos;
+      
     });
   };
 
