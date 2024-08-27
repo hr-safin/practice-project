@@ -22,7 +22,7 @@ const Todos = () => {
 
 
   return (
-    <ul className=" pt-7 flex items-center flex-col justify-around max-w-3xl">
+    <ul className=" pt-8 flex items-center flex-col justify-around max-w-3xl">
       {filterData.map((todo) => {
         return (
           <li key={todo.id}>
