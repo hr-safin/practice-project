@@ -18,6 +18,15 @@ const Todos = () => {
   if(todosData === "completed"){
     filterData = filterData.filter(task => task.completed)
   }
+  if(todosData === "completed"){
+    filterData = filterData.filter(task => task.completed)
+  }
+  if(todosData === "completed"){
+    filterData = filterData.filter(task => task.completed)
+  }
+  if(todosData === "completed"){
+    filterData = filterData.filter(task => task.completed)
+  }
 
 
 
